@@ -1,0 +1,6 @@
+1)Adding firebase to android,ios and web
+2)Firebase.initializeapp() -> android and ios
+3)Firebase.initializeapp(options:FirebaseOptions)
+4)Create Folder for project -> helper,service,pages,widgets,shared
+5)service -> for Auth service and our database
+6)Helper -> SharedPreferences
