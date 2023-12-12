@@ -5,5 +5,3 @@
 5)service -> for Auth service and our database service
 6)Helper -> SharedPreferences
 7)widgets -> diffrent widgets
-
-
