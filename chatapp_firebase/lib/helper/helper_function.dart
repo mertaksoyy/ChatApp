@@ -11,17 +11,7 @@ class HelperFunctions {
 //saving the data to SF
 //getting the data from SF
   static Future<bool?> getUserLoggedInStatus() async {
-    var sp = await SharedPreferences.getInstance();
-    var userLoggedInKey = sp.getString("LOGGEDINKEY");
-
-    if (userLoggedInKey == "LOGGEDINKEY" &&
-        userNameKey == "${userNameKey}" &&
-        userEmailKey == "${userEmailKey}") {
-      return true;
-    } else {
-      return false;
-    }
-
-    //return sp.getBool(userLoggedInKey);
+    SharedPreferences sf = await SharedPreferences.getInstance();
+    return sf.getBool(userLoggedInKey); //return bool value for user loggin
   }
 }

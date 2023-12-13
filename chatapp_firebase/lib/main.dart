@@ -1,5 +1,6 @@
 import 'package:chatapp_firebase/helper/helper_function.dart';
-import 'package:chatapp_firebase/pages/home_page.dart';
+import 'package:chatapp_firebase/pages/auth/home_page.dart';
+import 'package:chatapp_firebase/pages/login_page.dart';
 import 'package:chatapp_firebase/shared/constants.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -41,14 +42,18 @@ class _MyAppState extends State<MyApp> {
   }
 
   getUserLoggedInStatus() async {
-    await HelperFunctions.getUserLoggedInStatus();
+    await HelperFunctions.getUserLoggedInStatus().then((value) {
+      if (value != null) {
+        _isSignedIn = value;
+      }
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: const HomePage(),
+      home: _isSignedIn ? const HomePage() : const LoginPage(),
     );
   }
 }
