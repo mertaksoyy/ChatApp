@@ -10,6 +10,8 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   final formKey = GlobalKey<FormState>();
+  String email = " ";
+  String password = " ";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,11 +39,49 @@ class _LoginPageState extends State<LoginPage> {
                 height: 3,
               ),
               Image.asset("images/login.png"),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: TextFormField(
-                  decoration: textInputDecoration,
+              TextFormField(
+                decoration: textInputDecoration.copyWith(
+                  labelText: "Email",
+                  prefixIcon: const Icon(
+                    Icons.email,
+                    color: Color(0xFFee7b64),
+                  ),
                 ),
+                onChanged: (val) {
+                  email = val;
+                },
+                //check the validation
+                validator: (val) {
+                  return RegExp(
+                              r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                          .hasMatch(val!)
+                      ? null
+                      : "Please enter a valid email";
+                },
+              ),
+              SizedBox(
+                height: 15,
+              ),
+              TextFormField(
+                obscureText: true,
+                decoration: textInputDecoration.copyWith(
+                  labelText: "Password",
+                  prefixIcon: const Icon(
+                    Icons.lock,
+                    color: Color(0xFFee7b64),
+                  ),
+                ),
+                validator: (val) {
+                  if (/*val.length < 6 || val == null*/ val == null ||
+                      val.length < 6) {
+                    return "Password must be longer than 6 character or can not be empty";
+                  } else {
+                    return null;
+                  }
+                },
+                onChanged: (val) {
+                  password = val;
+                },
               )
             ],
           ),
