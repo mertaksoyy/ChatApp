@@ -1,11 +1,11 @@
 import 'package:chatapp_firebase/pages/auth/register_page.dart';
+import 'package:chatapp_firebase/pages/home_page.dart';
 import 'package:chatapp_firebase/widgets/widgets.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
-
   @override
   State<LoginPage> createState() => _LoginPageState();
 }
@@ -75,8 +75,7 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 //check the who is entering the email right or not
                 validator: (val) {
-                  if (/*val.length < 6 || val == null*/ val == null ||
-                      val.length < 6) {
+                  if (val == null || val.length < 6) {
                     return "Password must be longer than 6 character";
                   } else {
                     return null;
@@ -115,7 +114,7 @@ class _LoginPageState extends State<LoginPage> {
                   children: <TextSpan>[
                     TextSpan(
                         text: "Register Here",
-                        style: TextStyle(
+                        style: const TextStyle(
                             color: Colors.black,
                             decoration: TextDecoration.underline),
                         recognizer: TapGestureRecognizer()
@@ -131,9 +130,6 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   login() {
-    //check currenstate validate and login
-    if (formKey.currentState!.validate()) {
-      nextScreen(context, LoginPage());
-    }
+    nextScreen(context, HomePage());
   }
 }
